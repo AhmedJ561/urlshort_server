@@ -1,5 +1,5 @@
 const express = require("express");
-const { connectToMongoDB } = require("../connect");
+const { connectToMongoDB } = require("./connect");
 const urlRoute = require("../routes/url");
 const staticRoute = require("../routes/staticRouter");
 const cors = require("cors");
@@ -8,7 +8,7 @@ const app = express();
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(500).send('Something broke!');
+  res.status(500).send("Something broke!");
 });
 
 connectToMongoDB(process.env.MONGO_URL)
