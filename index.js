@@ -1,7 +1,7 @@
 const express = require("express");
 const { connectToMongoDB } = require("./connect");
-const urlRoute = require("../routes/url");
-const staticRoute = require("../routes/staticRouter");
+const urlRoute = require("./routes/url");
+const staticRoute = require("./routes/staticRouter");
 const cors = require("cors");
 const app = express();
 
