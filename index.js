@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const { connectToMongoDB } = require("./connect");
 const urlRoute = require("./routes/url");
@@ -6,15 +7,15 @@ const cors = require("cors");
 const app = express();
 
 const corsOptions = {
-    origin: [
-        "https://ahmedj561.github.io", 
-        "http://localhost:3000",
-        "http://localhost:5173",
-        "http://127.0.0.1:3000",
-        "http://127.0.0.1:5500",
-        "http://localhost:5500"
-    ],
-    credentials: true,
+  origin: [
+    "https://ahmedj561.github.io",
+    "http://localhost:3000",
+    "http://localhost:5173",
+    "http://127.0.0.1:3000",
+    "http://127.0.0.1:5500",
+    "http://localhost:5500"
+  ],
+  credentials: true,
 };
 
 app.use(cors(corsOptions));
@@ -29,6 +30,10 @@ connectToMongoDB(process.env.MONGO_URL)
 // Use routes
 app.use("/url", urlRoute);
 app.use("/server/home", staticRoute);
+
+app.get("/", (req, res) => {
+  res.status(200).send("URL Shortener API is running");
+});
 
 // Error handling middleware
 app.use((err, req, res, next) => {
